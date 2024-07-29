@@ -1,0 +1,85 @@
+plugins {
+    alias(libs.plugins.android.library)
+    id 'maven-publish'  // No version number needed
+}
+android {
+    namespace 'com.example.mylibrary'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    testFixtures {
+        enable = true
+    }
+    /*publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+        multipleVariants {
+            allVariants()
+            withJavadocJar()
+        }
+    }*/
+
+}
+//group = 'com.github.minhhieuha'
+//version = '1.0.4'
+
+/*publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.github.minhhieuha'   // Replace 'User' with your GitHub username
+            artifactId = 'myapplication'           // Replace 'Repo' with your repository name
+            version = '1.0.4'               // Replace 'Tag' with the version you want to publish
+
+        }
+    }
+
+    repositories {
+        mavenLocal()
+    }
+}*/
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.constraintlayout
+    implementation libs.navigation.fragment
+    implementation libs.navigation.ui
+    implementation libs.activity
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = 'com.github.minhhieuha'
+                artifactId = 'mylibrary'
+                version = '1.0.0'
+            }
+        }
+    }
+}
