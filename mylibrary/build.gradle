@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
-    id 'maven-publish'  // No version number needed
+    id ('maven-publish')  // No version number needed
 }
 android {
     namespace 'com.example.mylibrary'
